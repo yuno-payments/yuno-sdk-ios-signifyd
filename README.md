@@ -71,17 +71,6 @@ targets: [
 
 Ask your Yuno account team to add Signifyd as a fraud screening provider in your payment route. Yuno's backend sends the profiling key to the module during checkout: your app never handles it.
 
-## Manual installation
-
-If you cannot use Swift Package Manager for this module:
-
-1. Download `YunoAntifraudSignifyd.xcframework.zip` from this repository's [Releases](https://github.com/yuno-payments/yuno-sdk-ios-signifyd/releases).
-2. Get `SignifydProfilingSdk.xcframework` **5.1.x** from Signifyd's repository with your Signifyd token.
-3. Add both frameworks to your app target with **Embed & Sign**.
-4. Keep `YunoSDK` 2.30.0+ in your app through Swift Package Manager.
-
-> **The Signifyd SDK is required.** `YunoAntifraudSignifyd` links against `SignifydProfilingSdk`. If the Signifyd framework is missing, the app fails to launch. Use a 5.1.x version of the Signifyd SDK: a different minor or major version may not be compatible.
-
 ## How it works
 
 1. At app start, the module registers the Signifyd provider with the Yuno SDK.
