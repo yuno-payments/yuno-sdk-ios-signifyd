@@ -10,17 +10,17 @@ Add the package and the module registers itself when the app starts: the app mak
 |---|---|
 | iOS | 14.0+ |
 | Xcode | 26.2+ |
-| Yuno SDK (`YunoSDK`) | 2.30.0+, added through Swift Package Manager |
+| Yuno SDK (`YunoSDK` or `YunoSDK-Static`) | 2.31.0+, added to your app through Swift Package Manager |
 | Signifyd Profiling SDK | 5.1.x, from Signifyd's private repository |
 | Signifyd SDK download token | Issued by your Signifyd solution engineer |
 
 Swift Package Manager only. There is no CocoaPods distribution for this module.
 
-The Yuno SDK must also come from Swift Package Manager. An app that gets `YunoSDK` from CocoaPods would load two copies of it, and the module would register in a copy that checkout does not use.
+This package does not add the Yuno SDK to your app: add `YunoSDK` (dynamic) or `YunoSDK-Static` (static) from [yuno-sdk-ios](https://github.com/yuno-payments/yuno-sdk-ios), 2.31.0 or later. The module works with either of them. Use only one of the two products in your app.
 
 ## Installation (Swift Package Manager)
 
-This package declares two dependencies: the Yuno SDK and Signifyd's Profiling SDK. The Signifyd SDK is downloaded from Signifyd's private repository, `https://github.com/Signifyd-sdks/ios-sdk-dist.git`, so your build needs your Signifyd token.
+This package depends on Signifyd's Profiling SDK, downloaded from Signifyd's private repository, `https://github.com/Signifyd-sdks/ios-sdk-dist.git`, so your build needs your Signifyd token. It also requires `yuno-sdk-ios` 2.31.0 or later, the first version that works with this module.
 
 ### 1. Add your Signifyd token
 
@@ -49,18 +49,20 @@ In Xcode, choose **File > Add Package Dependencies**, enter:
 https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git
 ```
 
-and add the **YunoAntifraudSignifyd** product to your app target. Xcode resolves the Yuno SDK and the Signifyd SDK automatically.
+and add the **YunoAntifraudSignifyd** product to your app target, next to the `YunoSDK` or `YunoSDK-Static` product you already use. Xcode downloads the Signifyd SDK automatically.
 
 In a `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git", from: "1.0.0")
+    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios.git", from: "2.31.0"),
+    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git", from: "1.1.0")
 ],
 targets: [
     .target(
         name: "YourApp",
         dependencies: [
+            .product(name: "YunoSDK", package: "yuno-sdk-ios"),
             .product(name: "YunoAntifraudSignifyd", package: "yuno-sdk-ios-signifyd")
         ]
     )
