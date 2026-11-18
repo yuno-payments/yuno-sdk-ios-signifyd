@@ -3,36 +3,36 @@
 import PackageDescription
 
 let package = Package(
-    name: "YunoAntifraudSignifyd",
+    name: "SdkAntifraudSignifyd",
     platforms: [.iOS(.v14)],
     products: [
         .library(
-            name: "YunoAntifraudSignifyd",
-            targets: ["YunoAntifraudSignifydWrapper", "YunoAntifraudSignifydTarget"]
+            name: "SdkAntifraudSignifyd",
+            targets: ["SdkAntifraudSignifydWrapper", "SdkAntifraudSignifydTarget"]
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/yuno-payments/yuno-sdk-ios.git", from: "2.31.0"),
+        .package(url: "https://github.com/yuno-payments/yuno-sdk-ios.git", from: "3.2.0"),
         .package(url: "https://github.com/Signifyd-sdks/ios-sdk-dist.git", .upToNextMinor(from: "5.1.4"))
     ],
     targets: [
         .target(
-            name: "YunoAntifraudSignifydWrapper",
+            name: "SdkAntifraudSignifydWrapper",
             dependencies: [
-                "YunoAntifraudSignifyd",
+                "SdkAntifraudSignifyd",
                 .product(name: "ProfilingSdk", package: "ios-sdk-dist")
             ],
-            path: "Sources/YunoAntifraudSignifydWrapper",
+            path: "Sources/SdkAntifraudSignifydWrapper",
             publicHeadersPath: "include"
         ),
         .target(
-            name: "YunoAntifraudSignifydTarget",
-            path: "Sources/YunoAntifraudSignifydTarget"
+            name: "SdkAntifraudSignifydTarget",
+            path: "Sources/SdkAntifraudSignifydTarget"
         ),
         .binaryTarget(
-            name: "YunoAntifraudSignifyd",
-            url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd/releases/download/1.1.0/YunoAntifraudSignifyd.xcframework.zip",
-            checksum: "310ffcc5953d338ceb96274571d6ea0662b1b4b81ac79f400a97982d5fbb8591"
+            name: "SdkAntifraudSignifyd",
+            url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd/releases/download/2.0.0/SdkAntifraudSignifyd.xcframework.zip",
+            checksum: "347914db986af4aecee4e2014a93b443430d572c804435713311b7c1d1ae591d"
         )
     ]
 )

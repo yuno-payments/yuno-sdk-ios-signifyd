@@ -1,4 +1,6 @@
-# YunoAntifraudSignifyd for iOS
+# SdkAntifraudSignifyd for iOS
+
+This is the line for the **Yuno SDK 3.x** (`SdkPayments`), versions 2.x of this package. For the Legacy SDK 2.x (`YunoSDK`), use versions 1.x of this package.
 
 Optional antifraud module for the [Yuno iOS SDK](https://github.com/yuno-payments/yuno-sdk-ios). It adds Signifyd device profiling to Yuno checkouts.
 
@@ -10,17 +12,17 @@ Add the package and the module registers itself when the app starts: the app mak
 |---|---|
 | iOS | 14.0+ |
 | Xcode | 26.2+ |
-| Yuno SDK (`YunoSDK` or `YunoSDK-Static`) | 2.31.0+, added to your app through Swift Package Manager |
+| Yuno SDK (`SdkPayments` or `SdkPayments-Static`) | 3.2.0+, added to your app through Swift Package Manager |
 | Signifyd Profiling SDK | 5.1.x, from Signifyd's private repository |
 | Signifyd SDK download token | Issued by your Signifyd solution engineer |
 
 Swift Package Manager only. There is no CocoaPods distribution for this module.
 
-This package does not add the Yuno SDK to your app: add `YunoSDK` (dynamic) or `YunoSDK-Static` (static) from [yuno-sdk-ios](https://github.com/yuno-payments/yuno-sdk-ios), 2.31.0 or later. The module works with either of them. Use only one of the two products in your app.
+This package does not add the Yuno SDK to your app: add `SdkPayments` (dynamic) or `SdkPayments-Static` (static) from [yuno-sdk-ios](https://github.com/yuno-payments/yuno-sdk-ios), 3.2.0 or later. The module works with either of them. Use only one of the two products in your app.
 
 ## Installation (Swift Package Manager)
 
-This package depends on Signifyd's Profiling SDK, downloaded from Signifyd's private repository, `https://github.com/Signifyd-sdks/ios-sdk-dist.git`, so your build needs your Signifyd token. It also requires `yuno-sdk-ios` 2.31.0 or later, the first version that works with this module.
+This package depends on Signifyd's Profiling SDK, downloaded from Signifyd's private repository, `https://github.com/Signifyd-sdks/ios-sdk-dist.git`, so your build needs your Signifyd token. It also requires `yuno-sdk-ios` 3.2.0 or later, the first version that works with this module.
 
 ### 1. Add your Signifyd token
 
@@ -49,21 +51,21 @@ In Xcode, choose **File > Add Package Dependencies**, enter:
 https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git
 ```
 
-and add the **YunoAntifraudSignifyd** product to your app target, next to the `YunoSDK` or `YunoSDK-Static` product you already use. Xcode downloads the Signifyd SDK automatically.
+and add the **SdkAntifraudSignifyd** product to your app target, next to the `SdkPayments` or `SdkPayments-Static` product you already use. Xcode downloads the Signifyd SDK automatically.
 
 In a `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios.git", from: "2.31.0"),
-    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git", from: "1.1.0")
+    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios.git", from: "3.2.0"),
+    .package(url: "https://github.com/yuno-payments/yuno-sdk-ios-signifyd.git", from: "2.0.0")
 ],
 targets: [
     .target(
         name: "YourApp",
         dependencies: [
-            .product(name: "YunoSDK", package: "yuno-sdk-ios"),
-            .product(name: "YunoAntifraudSignifyd", package: "yuno-sdk-ios-signifyd")
+            .product(name: "SdkPayments", package: "yuno-sdk-ios"),
+            .product(name: "SdkAntifraudSignifyd", package: "yuno-sdk-ios-signifyd")
         ]
     )
 ]
@@ -84,4 +86,4 @@ If profiling fails or takes longer than the checkout allows, the payment continu
 
 ## License
 
-`YunoAntifraudSignifyd` is released under the MIT license. See [LICENSE](LICENSE). The Signifyd Profiling SDK is distributed by Signifyd under its own terms and is not included in this repository.
+`SdkAntifraudSignifyd` is released under the MIT license. See [LICENSE](LICENSE). The Signifyd Profiling SDK is distributed by Signifyd under its own terms and is not included in this repository.
